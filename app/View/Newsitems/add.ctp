@@ -2,9 +2,10 @@
 
 <h1>Add Newsitem</h1>
 <?php
-echo $this->Form->create('Newsitem');
+echo $this->Form->create('Newsitem',array('enctype'=>'multipart/form-data'));
 echo $this->Form->input('title');
 echo $this->Form->input('body', array('rows' => '3'));
+echo $this->Form->input('file', array('type' => 'file'));
 echo $this->Form->input('publish_date', array(
     'label' => 'publish date',
     'dateFormat' => 'DMY',
