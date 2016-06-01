@@ -4,25 +4,26 @@
 class NewsitemsController extends AppController {
     public $helpers = array('Html', 'Form');
     public $controllers = array('Flash','User');
+    public $components = array('RequestHandler');
     
     /*  --------------------------------------------------------------------------------------------------------------
     -                                       BASE FUNCTIONS                                                       -
     --------------------------------------------------------------------------------------------------------------    */
 
     public function index() {
-         $this->set('newsitems', $this->Newsitem->find('all'));
+        $newsitems = $this->Newsitem->find('all');
+        $this->set(array(
+            'newsitems' => $newsitems,
+            '_serialize' => array('newsitems')
+        ));
     }
 
-    public function view($id = null) {
-        if (!$id) {
-            throw new NotFoundException(__('Invalid newsitem'));
-        }
-
+    public function view($id) {
         $newsitem = $this->Newsitem->findById($id);
-        if (!$newsitem) {
-            throw new NotFoundException(__('Invalid newsitem'));
-        }
-        $this->set('newsitem', $newsitem);
+        $this->set(array(
+            'newsitem' => $newsitem,
+            '_serialize' => array('newsitem')
+        ));
     }
     
     public function add(){
@@ -53,20 +54,19 @@ class NewsitemsController extends AppController {
 
         if ($this->request->is(array('post', 'put'))) {
             $this->Newsitem->id = $id;
+            if(('newsfiles/' . $this->request->data['Newsitem']['file']['name']) != $this->newsitem['file']){
+                $this->addfile();
+            }
             if ($this->Newsitem->save($this->request->data)) {
                 $this->Flash->success(__('Your post has been updated.'));
                 return $this->redirect(array('action' => 'index'));
             }
             $this->Flash->error(__('Unable to update your newsitem.'));
         }
-
-        if (!$this->request->data) {
-            $this->request->data = $newsitem;
-        }
     }
     
     public function delete($id) {
-        if ($this->request->is('get')) {
+         if ($this->request->is('get')) {
             throw new MethodNotAllowedException();
         }
 
