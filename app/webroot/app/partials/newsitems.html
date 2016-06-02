@@ -1,0 +1,30 @@
+<div ng-controller="NewsitemListCtrl">
+    <h1 class="page-header">News List</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th width="25px">ID</th>
+                <th>TITLE</th>
+                <th>CONTENT</th>
+                <th>CREATED DATE</th>
+                <th>AUTHOR</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="e in newsitems">
+                <td>{{e.Newsitem.id}}</td>
+                <td><a ng-click="ViewNews($index)">{{e.Newsitem.title}}</a></td>
+                <td>{{e.Newsitem.body}}</td>
+                <td>{{e.Newsitem.created|date:'short'}}</td>
+                <td>{{e.Newsitem.username}}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <p>
+        <button type="button" class="btn btn-success" ng-show="user.username"
+                ng-click="addPost()">
+            <b class="icon-plus-sign"></b>Add Post
+        </button>
+    </p>
+</div>

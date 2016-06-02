@@ -1,0 +1,23 @@
+<div ng-controller="ViewNewsitemCtrl">
+    <h1 class="page-header">Newsitem info</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th width="25px">ID</th>
+                <th>TITLE</th>
+                <th>CONTENT</th>
+                <th>CREATED DATE</th>
+                <th>PUBLISH DATE</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{newsitem.id}}</td>
+                <td>{{newsitem.title}}</td>
+                <td>{{newsitem.body}}</td>
+                <td>{{newsitem.created|date:'short'}}</td>
+                <td>{{newsitem.publish_date}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
