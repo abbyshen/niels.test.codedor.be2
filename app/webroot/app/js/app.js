@@ -12,12 +12,7 @@
     as.config(function($routeProvider, $httpProvider) {
         $routeProvider
                 .when('/newsitems', {templateUrl: 'partials/newsitems.html', controller: 'NewsitemListCtrl'})
-                .when('/new-post', {templateUrl: 'partials/new-post.html', controller: 'NewPostCtrl'})
-                .when('/edit-post/:id', {templateUrl: 'partials/edit-post.html', controller: 'EditPostCtrl'})
                 .when('/view-news/:id', {templateUrl: 'partials/view-news.html', controller: 'ViewNewsitemCtrl'})
-                .when('/register', {templateUrl: 'partials/register.html', controller: 'RegisterCtrl'})
-                .when('/login', {templateUrl: 'partials/login.html'})
-                .when('/profile', {templateUrl: 'partials/profile.html'})
                 .otherwise({redirectTo: '/'});
 //        $httpProvider.defaults.useXDomain = true;
 //        delete $httpProvider.defaults.headers.common["X-Requested-With"];
